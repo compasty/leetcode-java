@@ -14,7 +14,7 @@ import java.util.Set;
  * @author geckostroll
  * @version Solution90.java 2024年04月05日
  */
-public class Solution90 {
+public class  Solution90 {
 
     List<List<Integer>> res = new LinkedList<>();
 
