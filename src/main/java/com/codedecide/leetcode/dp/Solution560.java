@@ -1,4 +1,4 @@
-package com.codedecide.leetcode.flip;
+package com.codedecide.leetcode.dp;
 
 /**
  * 和为K的子数组：https://leetcode.cn/problems/subarray-sum-equals-k/
@@ -7,8 +7,7 @@ package com.codedecide.leetcode.flip;
  */
 public class Solution560 {
     public int subarraySum(int[] nums, int k) {
-        int left = 0, right = 0;
-        int sum = 0, cnt = 0;
-        while
+        // TODO
+        return 0;
     }
 }
