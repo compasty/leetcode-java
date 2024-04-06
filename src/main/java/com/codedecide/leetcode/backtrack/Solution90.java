@@ -3,6 +3,7 @@ package com.codedecide.leetcode.backtrack;
 import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,24 +19,24 @@ public class  Solution90 {
 
     List<List<Integer>> res = new LinkedList<>();
 
-    void backtrack(int[] nums, Set<Integer> usedSet, LinkedList<Integer> path) {
-        res.add(new LinkedList<>(path));
-        for (int num: nums) {
-            if (usedSet.contains(num)) {
+    LinkedList<Integer> track = new LinkedList<>();
+
+    void backtrack(int[] nums, int start) {
+        res.add(new LinkedList<>(track));
+        for (int i = start; i < nums.length; i++) {
+            // 剪枝逻辑，值相同的相邻树枝，只遍历第一条
+            if (i > start && nums[i] == nums[i - 1]) {
                 continue;
             }
-            path.add(num);
-            usedSet.add(num);
-            backtrack(nums, usedSet, path);
-            path.removeLast();
-            usedSet.remove(num);
+            track.addLast(nums[i]);
+            backtrack(nums, i + 1);
+            track.removeLast();
         }
     }
 
     public List<List<Integer>> subsetsWithDup(int[] nums) {
-        LinkedList<Integer> path = new LinkedList<>();
-        Set<Integer> usedSet = new HashSet<>();
-        backtrack(nums, usedSet, path);
+        Arrays.sort(nums);
+        backtrack(nums, 0);
         return res;
     }
 }

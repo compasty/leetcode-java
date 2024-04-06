@@ -21,11 +21,13 @@ public class Solution77 {
 
     void backtrack(int n, int k, LinkedList<Integer> track, int start) {
         if (track.size() == k) {
-            resList.add(new LinkedList<>(track))
+            resList.add(new LinkedList<>(track));
+            return;
         }
         for (int i = start; i <= n; i++) {
-            track.add(i);
-
+            track.addLast(i);
+            backtrack(n, k, track, i + 1);
+            track.removeLast();
         }
     }
 }
