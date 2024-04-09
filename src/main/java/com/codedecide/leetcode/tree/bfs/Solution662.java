@@ -6,6 +6,7 @@ import java.util.Deque;
 import java.util.LinkedList;
 
 /**
+ * 二叉树的最大宽度：https://leetcode.cn/problems/maximum-width-of-binary-tree
  * @author geckostroll
  * @version Solution662.java 2024年04月05日
  */

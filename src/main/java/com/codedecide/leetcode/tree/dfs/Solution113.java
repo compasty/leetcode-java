@@ -15,21 +15,44 @@ import java.util.List;
  */
 public class Solution113 {
 
+    private List<List<Integer>> resList;
+
+    private LinkedList<Integer> track;
+
     public boolean isLeaf(TreeNode node) {
         return node.left == null && node.right == null;
     }
 
-    public List<List<Integer>> dfs(TreeNode node, int targetSum, List<List<Integer>> resultList) {
-        // TODO
-        return null;
+    public void dfs(TreeNode node, int targetSum, Integer prevSum) {
+        if (isLeaf(node)) {
+            if (prevSum + node.val == targetSum) {
+                track.add(node.val);
+                resList.add(new LinkedList<>(track));
+            }
+            return;
+        }
+        track.add(node.val);
+        if (node.left != null) {
+            prevSum += node.val;
+            dfs(node.left, targetSum, prevSum);
+            prevSum -= node.val;
+            track.removeLast();
+        }
+        if (node.right != null) {
+            track.add(node.val);
+            prevSum += node.val;
+            dfs(node.right, targetSum, prevSum);
+        }
     }
 
     public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
         if (root == null) {
             return null;
         }
-        List<List<Integer>> resList = new LinkedList<>();
-        dfs(root, targetSum, resList);
+        int prevSum = 0;
+        resList = new LinkedList<>();
+        track = new LinkedList<>();
+        dfs(root, targetSum, prevSum);
         return resList;
     }
 }
