@@ -1,4 +1,4 @@
-package com.codedecide.leetcode.dp;
+package com.codedecide.leetcode.dp.wordbreak;
 
 import com.google.common.collect.Lists;
 

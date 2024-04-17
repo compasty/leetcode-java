@@ -9,24 +9,14 @@ package com.codedecide.leetcode.tree;
 public class Solution236 {
 
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        TreeNode cur = root;
-        int findNum = 0;
-        dfs(root, p, q, cur, findNum);
-        return cur;
-    }
-
-    public void dfs(TreeNode n, TreeNode p, TreeNode q, TreeNode cur, int findNum) {
-        if (cur == p || cur == q) {
-            findNum++;
+        if (root == null || root == p || root == q) return root;
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.left, p, q);
+        if (left == null && right == null) {
+            return null;
         }
-        if (findNum == 2) {
-
-        }
-        if (n.left != null) {
-            dfs(n.left, p, q, cur, findNum);
-        }
-        if (n.right != null) {
-
-        }
+        if (left == null) return right;
+        if (right == null) return left;
+        return root;
     }
 }

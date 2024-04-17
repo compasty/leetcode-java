@@ -43,7 +43,6 @@ public class Solution199 {
 
     public static void main(String[] args) {
         TreeNode root = TreeNodeUtils.buildFromIntList(Lists.newArrayList(1, 2, 3, null, 5, null, 4));
-
         System.out.println(new Solution199().rightSideView(root));
     }
 
