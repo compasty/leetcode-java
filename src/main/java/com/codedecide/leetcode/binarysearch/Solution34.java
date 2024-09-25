@@ -8,36 +8,26 @@ package com.codedecide.leetcode.binarysearch;
  */
 public class Solution34 {
 
-    public int leftBound(int[] nums, int target) {
+    public int binarySearch(int[] nums, int target, boolean lower) {
         int left = 0, right = nums.length;
-
         while (left < right) {
-            int mid = left + (right - left) / 2;
-            if (nums[mid] == target) {
+            int mid = left + (right - left) /2;
+            if (nums[mid] > target || (lower && nums[mid] == target)) {
                 right = mid;
-            } else if (nums[mid] < target) {
-                left = mid + 1;
             } else {
-                right = mid;
+                left = mid + 1;
             }
         }
-        if (left >= nums.length) {
-            return -1;
-        }
-        return nums[left] == target ? left : -1;
+        return left;
     }
 
     public int[] searchRange(int[] nums, int target) {
-        int leftBound = leftBound(nums, target);
-        if (leftBound == -1) {
-            return new int[]{-1, -1};
-        } else {
-            int i = leftBound + 1;
-            while (i < nums.length && nums[i] == target) {
-                i++;
-            }
-            return new int[]{leftBound, i - 1};
+        int leftIdx = binarySearch(nums, target, true);
+        int rightIdx = binarySearch(nums, target, false) - 1;
+        if (leftIdx <= rightIdx && rightIdx >= 0 && nums[leftIdx] == target && nums[rightIdx] == target) {
+            return new int[]{leftIdx, rightIdx};
         }
+        return new int[]{-1, -1};
     }
 
     public static void main(String[] args) {
